@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import { Fragment, lazy, Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
+import Main from "./components/layout/Main";
+import GamePage from "./pages/GamePage";
+import SignInPage from "./pages/SignInPage";
+import SignUpPage from "./pages/SignUpPage";
+
+const HomePage = lazy(() => import("./pages/HomePage"));
+const PcPage = lazy(() => import("./pages/PcPage"));
+const BrowserPage = lazy(() => import("./pages/BrowserPage"));
+const GameDetailPage = lazy(() => import("./pages/GameDetailPage"));
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Fragment>
+            <Suspense fallback={<></>}>
+                <Routes>
+                    <Route element={<Main></Main>}>
+                        <Route path="/" element={<HomePage></HomePage>}></Route>
+                        <Route
+                            path="/games"
+                            element={<GamePage></GamePage>}
+                        ></Route>
+                        <Route path="/pc" element={<PcPage></PcPage>}></Route>
+                        <Route
+                            path="/browser"
+                            element={<BrowserPage></BrowserPage>}
+                        ></Route>
+                        <Route
+                            path="/sign-up"
+                            element={<SignUpPage></SignUpPage>}
+                        ></Route>
+                        <Route
+                            path="/sign-in"
+                            element={<SignInPage></SignInPage>}
+                        ></Route>
+                        <Route
+                            path="/game/:gameId"
+                            element={<GameDetailPage></GameDetailPage>}
+                        ></Route>
+                    </Route>
+                </Routes>
+            </Suspense>
+        </Fragment>
+    );
 }
 
 export default App;

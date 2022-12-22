@@ -1,13 +1,13 @@
 import { Fragment, lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import Main from "./components/layout/Main";
+import BrowserPage from "./pages/BrowserPage";
 import GamePage from "./pages/GamePage";
+import PcPage from "./pages/PcPage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
-const PcPage = lazy(() => import("./pages/PcPage"));
-const BrowserPage = lazy(() => import("./pages/BrowserPage"));
 const GameDetailPage = lazy(() => import("./pages/GameDetailPage"));
 
 function App() {

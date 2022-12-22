@@ -6,7 +6,10 @@ const GameCard = ({ item }) => {
     const { id, title, genre, release_date, developer, platform } = item;
     const navigate = useNavigate();
     return (
-        <div onClick={() => navigate(`/game/${id}`)} className="game-cart flex w-full gap-4 rounded-lg p-3 bg-slate-700 cursor-pointer hover:bg-slate-800 mb-5">
+        <div
+            onClick={() => navigate(`/game/${id}`)}
+            className="game-cart flex w-full gap-4 rounded-lg p-3 bg-slate-700 cursor-pointer hover:bg-slate-800 mb-5"
+        >
             <img
                 src={`https://www.freetogame.com/g/${id}/thumbnail.jpg`}
                 alt=""

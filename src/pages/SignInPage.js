@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Field from "../components/field/Field";
 import Input from "../components/input/Input";
@@ -31,7 +31,7 @@ const SignInPage = () => {
         resolver: yupResolver(schema),
     });
     const handleSignIn = (values) => {
-        console.log(values);
+        // console.log(values);
         if (!isValid) return;
         return new Promise((resolve) => {
             setTimeout(() => {
@@ -39,6 +39,9 @@ const SignInPage = () => {
             }, 3000);
         });
     };
+    useEffect(() => {
+        document.title = "Sign In Page";
+    }, []);
     return (
         <form
             className="max-w-[350px] mx-auto my-10"

@@ -6,13 +6,17 @@ import axios from "axios";
 
 const PcPage = () => {
     const [gamePC, setGamePC] = useState(null);
-    const [filter, setFilter] = useState("");
+    const [filterSort, setFilterSort] = useState("");
+
     useEffect(() => {
         const getAPIGames = async () => {
             const options = {
                 method: "GET",
                 url: "https://free-to-play-games-database.p.rapidapi.com/api/games",
-                params: { "sort-by": `${filter}`, platform: "pc" },
+                params: {
+                    platform: "pc",
+                    "sort-by": `${filterSort}`,
+                },
                 headers: {
                     "X-RapidAPI-Key":
                         "870d27a050msh9e090e6d10b5bdfp167cd3jsnca5058a4b875",
@@ -30,9 +34,9 @@ const PcPage = () => {
         getAPIGames().then((gamesPC) => {
             setGamePC(gamesPC);
         });
-    }, [filter]);
+    }, [filterSort]);
     const handleFilterChange = (e) => {
-        setFilter(e.target.value);
+        setFilterSort(e.target.value);
     };
     return (
         <Fragment>
@@ -42,7 +46,7 @@ const PcPage = () => {
                     <h2 className="capitalize text-white mb-5 text-2xl font-bold">
                         PC games list
                     </h2>
-                    <div className="mb-5">
+                    <div className="mb-5 flex gap-5">
                         <select
                             className="max-w-[400px] px-2 py-1 rounded-lg"
                             onChange={handleFilterChange}

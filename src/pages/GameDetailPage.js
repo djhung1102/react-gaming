@@ -7,6 +7,7 @@ import { Navigation, Thumbs } from "swiper";
 import "swiper/scss";
 import "swiper/scss/navigation";
 import "swiper/scss/thumbs";
+import ShowMoreText from "react-show-more-text";
 
 const GameDetailPage = () => {
     const [activeThumbs, setActiveThumbs] = useState(null);
@@ -38,7 +39,10 @@ const GameDetailPage = () => {
             setDetailGame(games);
         });
     }, [gameId]);
-    console.log(detailGame);
+    // console.log(detailGame);
+    useEffect(() => {
+        document.title = "Detail Game Page";
+    }, []);
 
     return (
         <Fragment>
@@ -118,8 +122,19 @@ const GameDetailPage = () => {
                         </div>
                         <div className="mt-3">
                             <span className="text-white text-xs p-1 border-none rounded-md bg-slate-500">
-                                Shotter
+                                {detailGame.genre}
                             </span>
+                        </div>
+                        <div className="mt-3">
+                            <a
+                                href={`${detailGame.game_url}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <button className="px-3 py-2 text-white text-lg bg-slate-900 rounded-xl font-medium">
+                                    View to game
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -130,7 +145,18 @@ const GameDetailPage = () => {
                         </h2>
                         <div className="line"></div>
                         <span className="text-[#acb2b8] text-base">
-                            {detailGame.description}
+                            <ShowMoreText
+                                lines={5}
+                                more="Show more"
+                                less="Show less"
+                                className="content-css"
+                                anchorClass="show-more-less-clickable"
+                                expanded={false}
+                                width={600}
+                                truncatedEndingComponent={"... "}
+                            >
+                                {detailGame.description}
+                            </ShowMoreText>
                         </span>
                     </div>
                     <div className="flex-1 bg-slate-700 rounded-lg p-5 w-[320px] h-fit">

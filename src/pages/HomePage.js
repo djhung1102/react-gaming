@@ -35,6 +35,9 @@ const HomePage = () => {
     const handleFilterChange = (e) => {
         setFilter(e.target.value);
     };
+    useEffect(() => {
+        document.title = "HomePage";
+    }, []);
     return (
         <Fragment>
             <section className="app flex flex-row gap-5 px-5">

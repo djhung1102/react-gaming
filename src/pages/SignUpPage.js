@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "../components/button/Button";
 import Field from "../components/field/Field";
@@ -31,7 +31,7 @@ const SignUpPage = () => {
         resolver: yupResolver(schema),
     });
     const handleSignUp = (values) => {
-        console.log(values);
+        // console.log(values);
         if (!isValid) return;
         return new Promise((resolve) => {
             setTimeout(() => {
@@ -39,8 +39,11 @@ const SignUpPage = () => {
             }, 3000);
         });
     };
-    console.log(errors);
+    // console.log(errors);
     const [tooglePassword, setTooglePassword] = useState(false);
+    useEffect(() => {
+        document.title = "Sign Up Page";
+    }, []);
     return (
         <form
             className="max-w-[350px] mx-auto my-10"

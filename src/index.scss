@@ -62,4 +62,20 @@
         background-color: #fff;
         margin-bottom: 20px;
     }
+
+    .short-text {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+    }
+    .short-text-title {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+    }
+    .give-card:hover {
+        transform: scale(1.02);
+    }
 }

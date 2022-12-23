@@ -26,7 +26,7 @@ const Header = () => {
                                 : "flex items-center"
                         }
                     >
-                        Games
+                        Giveaways
                     </NavLink>
                 </div>
                 <div>

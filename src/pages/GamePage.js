@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Fragment } from "react";
 import axios from "axios";
-import GameGiveawayCard from "../components/game/GameGiveawayCard";
+import GameGiveawayCard, {
+    GiveawayCardSkeleton,
+} from "../components/game/GameGiveawayCard";
+import { v4 as uuidv4 } from "uuid";
 
 const GamePage = () => {
-    const [giveaway, setGiveaway] = useState([]);
+    const [giveaway, setGiveaway] = useState(null);
     useEffect(() => {
         document.title = "Giveaways Page";
     }, []);
@@ -21,7 +24,6 @@ const GamePage = () => {
             };
             try {
                 const response = await axios.request(options);
-                console.log(response.data);
                 return response.data;
             } catch (error) {
                 console.error(error);
@@ -31,22 +33,30 @@ const GamePage = () => {
             setGiveaway(gameGiveaway);
         });
     }, []);
-    console.log(giveaway);
+    // console.log("giveaways", giveaway);
     return (
         <Fragment>
             <section className="giveaway-layout max-w-7xl mr-auto ml-auto">
                 <h2 className="capitalize text-white mb-5 text-2xl font-bold">
                     Giveaways List
                 </h2>
+                {!giveaway && (
+                    <div className="grid grid-cols-4 gap-10">
+                        {new Array(8).fill(0).map(() => (
+                            <GiveawayCardSkeleton
+                                key={uuidv4()}
+                            ></GiveawayCardSkeleton>
+                        ))}
+                    </div>
+                )}
                 <div className="grid grid-cols-4 gap-10">
-                    {giveaway.length > 0 &&
-                        giveaway
-                            .slice(0, 20)
-                            .map((item) => (
-                                <GameGiveawayCard
-                                    item={item}
-                                ></GameGiveawayCard>
-                            ))}
+                    {giveaway?.length > 0 &&
+                        giveaway.map((item) => (
+                            <GameGiveawayCard
+                                item={item}
+                                key={item.id}
+                            ></GameGiveawayCard>
+                        ))}
                 </div>
             </section>
         </Fragment>

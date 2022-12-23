@@ -78,4 +78,73 @@
     .give-card:hover {
         transform: scale(1.02);
     }
+    // skeleton
+    .skeleton {
+        background-color: #eee;
+        background-image: linear-gradient(
+            110deg,
+            #ececec 8%,
+            #f5f5f5 18%,
+            #ececec 33%
+        );
+        background-size: 200% 100%;
+        animation: 1.5s shine linear infinite;
+    }
+    @keyframes shine {
+        to {
+            background-position-x: -200%;
+        }
+    }
+    // Fade Loading
+    .fade-loading {
+        width: 80px;
+        height: 80px;
+        background-color: #2cccff;
+        border-radius: 100rem;
+        margin: 10px auto;
+        position: relative;
+    }
+    .fade-loading:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        background-color: inherit;
+        animation: fade 1s forwards infinite linear;
+    }
+    @keyframes fade {
+        to {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+    // Circle Loading
+    .circle-loading2 {
+        margin-left: 50%;
+        display: inline-flex;
+        animation: loading2 1s infinite;
+    }
+    .circle-loading2 div {
+        width: 30px;
+        height: 30px;
+        border: 2px solid #fcb564;
+        border-radius: 50%;
+        margin: 0 5px;
+    }
+    @keyframes loading2 {
+        50% {
+            transform: rotate(200deg);
+        }
+
+        75% {
+            transform: rotate(160deg);
+        }
+
+        100% {
+            transform: rotate(180deg);
+        }
+    }
 }

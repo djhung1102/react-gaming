@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-// https://www.freetogame.com/api/games
 const GameCard = ({ item }) => {
     const { id, title, genre, release_date, developer, platform } = item;
     const navigate = useNavigate();

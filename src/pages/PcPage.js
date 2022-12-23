@@ -58,10 +58,13 @@ const PcPage = () => {
                         </select>
                     </div>
                     {!gamePC && (
-                        <div className="mt-16 w-10 h-10 transition-all rounded-full border-4 border-yellow-500 border-t-transparent border-t-4 mx-auto animate-spin"></div>
+                        <div className="circle-loading2 mt-14">
+                            <div></div>
+                            <div></div>
+                        </div>
                     )}
                     {gamePC &&
-                        gamePC.length > 0 &&
+                        gamePC?.length > 0 &&
                         gamePC.slice(0, 100).map((item) => (
                             <div
                                 className="game-cart select-none"

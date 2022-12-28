@@ -12,7 +12,7 @@ const GameGiveawayCard = ({ item }) => {
         gamerpower_url,
     } = item;
     return (
-        <div className="give-card rounded-lg p-3 bg-slate-800 text-white transition-all">
+        <div className="give-card flex flex-col rounded-lg p-3 bg-slate-800 text-white transition-all h-full select-none">
             <img
                 src={`${image}`}
                 alt=""
@@ -34,6 +34,7 @@ const GameGiveawayCard = ({ item }) => {
                     href={`${gamerpower_url}`}
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="mt-auto"
                 >
                     <button className="py-2 px-4 rounded-lg capitalize w-full bg-transparent border border-yellow-600 text-yellow-600 font-bold mt-auto transition-all hover:text-white hover:bg-yellow-600">
                         View giveaways

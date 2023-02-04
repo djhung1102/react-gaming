@@ -21,10 +21,8 @@ const GameDetailPage = () => {
                 url: "https://free-to-play-games-database.p.rapidapi.com/api/game",
                 params: { id: `${gameId}` },
                 headers: {
-                    "X-RapidAPI-Key":
-                        "870d27a050msh9e090e6d10b5bdfp167cd3jsnca5058a4b875",
-                    "X-RapidAPI-Host":
-                        "free-to-play-games-database.p.rapidapi.com",
+                    "X-RapidAPI-Key": "870d27a050msh9e090e6d10b5bdfp167cd3jsnca5058a4b875",
+                    "X-RapidAPI-Host": "free-to-play-games-database.p.rapidapi.com",
                 },
             };
             try {
@@ -44,19 +42,17 @@ const GameDetailPage = () => {
 
     return (
         <Fragment>
-            <div className="grid grid-flow-row items-center justify-center">
-                {!detailGame && (
-                    <div className="fade-loading mx-auto mt-24"></div>
-                )}
+            <div className="flex lg:grid lg:grid-flow-row items-center justify-center overflow-x-hidden">
+                {!detailGame && <div className="fade-loading mx-auto mt-24"></div>}
                 {detailGame && (
                     <div className="text-white">
                         <div className="mb-5">
-                            <span className="text-white text-2xl font-bold">
+                            <span className="text-white text-2xl sm:text-center font-bold">
                                 {detailGame?.title}
                             </span>
                         </div>
-                        <div className="mb-10 flex">
-                            <div className="image-layout w-[600px] h-full bg-transparent">
+                        <div className="mb-10 flex flex-col lg:flex-row gap-2">
+                            <div className="image-layout w-[350px] lg:w-[600px] h-full bg-transparent">
                                 <Swiper
                                     loop={false}
                                     spaceBetween={5}
@@ -66,8 +62,7 @@ const GameDetailPage = () => {
                                     slidesPerView={1}
                                     thumbs={{
                                         swiper:
-                                            activeThumbs &&
-                                            !activeThumbs.destroyed
+                                            activeThumbs && !activeThumbs.destroyed
                                                 ? activeThumbs
                                                 : null,
                                     }}
@@ -76,10 +71,7 @@ const GameDetailPage = () => {
                                     {detailGame?.screenshots?.length > 0 &&
                                         detailGame.screenshots.map((item) => (
                                             <SwiperSlide key={item.id}>
-                                                <img
-                                                    src={`${item.image}`}
-                                                    alt=""
-                                                />
+                                                <img src={`${item.image}`} alt="" />
                                             </SwiperSlide>
                                         ))}
                                 </Swiper>
@@ -94,16 +86,13 @@ const GameDetailPage = () => {
                                         detailGame.screenshots.map((item) => (
                                             <SwiperSlide key={item.id}>
                                                 <div className="product-image-slider-thumbs-wrapper">
-                                                    <img
-                                                        src={`${item.image}`}
-                                                        alt=""
-                                                    />
+                                                    <img src={`${item.image}`} alt="" />
                                                 </div>
                                             </SwiperSlide>
                                         ))}
                                 </Swiper>
                             </div>
-                            <div className="ml-4 w-[320px]">
+                            <div className="ml-0 lg:ml-4 w-[350px] lg:w-[300px]">
                                 <img
                                     src={`${detailGame?.thumbnail}`}
                                     alt=""
@@ -116,25 +105,19 @@ const GameDetailPage = () => {
                                     <span className="text-slate-400 uppercase w-[130px]">
                                         Release date:
                                     </span>
-                                    <span className="">
-                                        {detailGame?.release_date}
-                                    </span>
+                                    <span className="">{detailGame?.release_date}</span>
                                 </div>
                                 <div className="mt-3 flex text-white text-sm">
                                     <span className="text-slate-400 uppercase w-[130px]">
                                         Publisher:
                                     </span>
-                                    <span className="">
-                                        {detailGame?.publisher}
-                                    </span>
+                                    <span className="">{detailGame?.publisher}</span>
                                 </div>
                                 <div className="mt-3 flex text-white text-sm">
                                     <span className="text-slate-400 uppercase w-[130px]">
                                         Developer:
                                     </span>
-                                    <span className="">
-                                        {detailGame?.developer}
-                                    </span>
+                                    <span className="">{detailGame?.developer}</span>
                                 </div>
                                 <div className="mt-3">
                                     <span className="text-white text-xs p-1 border-none rounded-md bg-slate-500">
@@ -154,8 +137,8 @@ const GameDetailPage = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex gap-4">
-                            <div className="w-[600px]">
+                        <div className="flex flex-col lg:flex-row gap-4">
+                            <div className="w-[350px] lg:w-[600px]">
                                 <h2 className="text-white text-lg uppercase font-medium">
                                     About the game
                                 </h2>
@@ -175,65 +158,44 @@ const GameDetailPage = () => {
                                     </ShowMoreText>
                                 </span>
                             </div>
-                            <div className="flex-1 bg-slate-700 rounded-lg p-5 w-[320px] h-fit">
+                            <div className="flex-1 bg-slate-700 rounded-lg p-5 w-[350px] lg:w-[300px] h-fit mb-2">
                                 <h2 className="text-white text-base uppercase font-medium text-center mb-4">
                                     System requirements
                                 </h2>
                                 {!detailGame?.minimum_system_requirements ? (
                                     <span className="text-[#acb2b8] uppercase">
-                                        The game can be played on any device
-                                        configuration
+                                        The game can be played on any device configuration
                                     </span>
                                 ) : (
                                     <div className="requirement w-full">
                                         <div className="text-[#acb2b8] mb-2">
                                             OS:{" "}
                                             <span className="text-white">
-                                                {
-                                                    detailGame
-                                                        ?.minimum_system_requirements
-                                                        ?.os
-                                                }
+                                                {detailGame?.minimum_system_requirements?.os}
                                             </span>
                                         </div>
                                         <div className="text-[#acb2b8] mb-2">
                                             Processor:{" "}
                                             <span className="text-white">
-                                                {
-                                                    detailGame
-                                                        ?.minimum_system_requirements
-                                                        ?.processor
-                                                }
+                                                {detailGame?.minimum_system_requirements?.processor}
                                             </span>
                                         </div>
                                         <div className="text-[#acb2b8] mb-2">
                                             Memory:{" "}
                                             <span className="text-white">
-                                                {
-                                                    detailGame
-                                                        ?.minimum_system_requirements
-                                                        ?.memory
-                                                }
+                                                {detailGame?.minimum_system_requirements?.memory}
                                             </span>
                                         </div>
                                         <div className="text-[#acb2b8] mb-2">
                                             Graphics:{" "}
                                             <span className="text-white">
-                                                {
-                                                    detailGame
-                                                        ?.minimum_system_requirements
-                                                        ?.graphics
-                                                }
+                                                {detailGame?.minimum_system_requirements?.graphics}
                                             </span>
                                         </div>
                                         <div className="text-[#acb2b8] mb-2">
                                             Storage:{" "}
                                             <span className="text-white">
-                                                {
-                                                    detailGame
-                                                        ?.minimum_system_requirements
-                                                        ?.storage
-                                                }
+                                                {detailGame?.minimum_system_requirements?.storage}
                                             </span>
                                         </div>
                                     </div>

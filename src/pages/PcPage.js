@@ -41,7 +41,6 @@ const PcPage = () => {
     return (
         <Fragment>
             <section className="app flex flex-row gap-5 px-5">
-                <Category></Category>
                 <div className="game-layout flex-1">
                     <h2 className="capitalize text-white mb-5 text-2xl font-bold">
                         PC games list

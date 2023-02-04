@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Fragment } from "react";
 import GameCard from "../components/game/GameCard";
-import Category from "../components/layout/Category";
 import axios from "axios";
 
 const HomePage = () => {
@@ -14,10 +13,8 @@ const HomePage = () => {
                 url: "https://free-to-play-games-database.p.rapidapi.com/api/games",
                 params: { "sort-by": `${filter}` },
                 headers: {
-                    "X-RapidAPI-Key":
-                        "870d27a050msh9e090e6d10b5bdfp167cd3jsnca5058a4b875",
-                    "X-RapidAPI-Host":
-                        "free-to-play-games-database.p.rapidapi.com",
+                    "X-RapidAPI-Key": "870d27a050msh9e090e6d10b5bdfp167cd3jsnca5058a4b875",
+                    "X-RapidAPI-Host": "free-to-play-games-database.p.rapidapi.com",
                 },
             };
             try {
@@ -37,10 +34,10 @@ const HomePage = () => {
     useEffect(() => {
         document.title = "HomePage";
     }, []);
+    // console.log(gameList);
     return (
         <Fragment>
-            <section className="app flex flex-row gap-5 px-5">
-                <Category></Category>
+            <section className="app flex flex-row gap-5 px-2 lg:px-5 overflow-x-hidden">
                 <div className="game-layout flex-1">
                     <h2 className="capitalize text-white mb-5 text-2xl font-bold">
                         Live games list
@@ -50,10 +47,16 @@ const HomePage = () => {
                             className="max-w-[400px] px-2 py-1 rounded-lg"
                             onChange={handleFilterChange}
                         >
-                            <option>--Sort By--</option>
-                            <option value="release-date">Release date</option>
-                            <option value="popularity">Popular</option>
-                            <option value="alphabetical">Alphabet</option>
+                            <option className="text-sm lg:text-base">--Sort By--</option>
+                            <option value="release-date" className="text-sm lg:text-base">
+                                Release date
+                            </option>
+                            <option value="popularity" className="text-sm lg:text-base">
+                                Popular
+                            </option>
+                            <option value="alphabetical" className="text-sm lg:text-base">
+                                Alphabet
+                            </option>
                         </select>
                     </div>
                     {!gameList && (
@@ -65,10 +68,7 @@ const HomePage = () => {
                     {gameList &&
                         gameList.length > 0 &&
                         gameList.slice(0, 100).map((item) => (
-                            <div
-                                className="game-cart select-none"
-                                key={item.id}
-                            >
+                            <div className="game-cart select-none" key={item.id}>
                                 <GameCard item={item}></GameCard>
                             </div>
                         ))}
